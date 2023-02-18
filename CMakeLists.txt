@@ -1,23 +1,22 @@
-set(PROJECT_NAME sharpdisplaytest)
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.2)
 
-include(pico_sdk_import.cmake)
-
-project(${PROJECT_NAME} C CXX ASM)
-pico_sdk_init()
-
-add_executable(${PROJECT_NAME}
-	main.c
+add_library(libsharp INTERFACE)
+target_sources(libsharp INTERFACE
+    ${CMAKE_CURRENT_LIST_DIR}/sharp.c
+)
+target_include_directories(libsharp INTERFACE
+    ${CMAKE_CURRENT_LIST_DIR}
+)
+target_link_libraries(libsharp INTERFACE
+    hardware_spi
+    hardware_gpio
+    pico_stdlib
 )
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/lib/sharp)
-
-pico_enable_stdio_usb(${PROJECT_NAME} 1)
-pico_enable_stdio_uart(${PROJECT_NAME} 0)
-
-pico_add_extra_outputs(${PROJECT_NAME})
-
-target_link_libraries(${PROJECT_NAME}
-	pico_stdlib
+add_executable(libsharp_example main.c)
+target_link_libraries(libsharp_example
 	libsharp
+	hardware_spi
+	hardware_gpio
+	pico_stdlib
 )
