@@ -1,10 +1,11 @@
 # sharpmem-rp2040
 Sharp Memory Display Library for RP2040
 
-I wanted to use the [Adafruit 400x240 Sharp Memory Display]() for my [VGM Player
-project](). I couldn't find any existing libraries to interface with this display
-so I started my own. I'm a novice with C library conventions but this is my go
-at it.
+I wanted to use the
+[Adafruit 400x240 Sharp Memory Display](https://adafruit.com/product/4694) for my
+[VGM Player project](https://github.com/anthonydotmoe/vgmplayer). I couldn't
+find any existing libraries to interface with this display so I started my own.
+I'm a novice with C library conventions but this is my go at it.
 
 These displays want the least-significant bit first over the SPI bus, but the
 RP2040's SPI peripheral doesn't support this. I ended up using a byte reversal
