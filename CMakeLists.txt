@@ -13,10 +13,11 @@ target_link_libraries(libsharp INTERFACE
     pico_stdlib
 )
 
-add_executable(libsharp_example main.c)
-target_link_libraries(libsharp_example
-	libsharp
-	hardware_spi
-	hardware_gpio
-	pico_stdlib
-)
+### I don't think this works
+#add_executable(libsharp_example main.c)
+#target_link_libraries(libsharp_example
+#	libsharp
+#	hardware_spi
+#	hardware_gpio
+#	pico_stdlib
+#)
